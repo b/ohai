@@ -23,9 +23,9 @@ require_plugin "kernel"
 require_plugin "network"
 
 def have_ec2_mac?
-  network[:interfaces].keys.each do |iface|
-    unless network[:interfaces][iface][:arp].nil?
-      return true if network[:interfaces][iface][:arp].value?("fe:ff:ff:ff:ff:ff")
+  network[:interfaces].values.each do |iface|
+    unless iface[:arp].nil?
+      return true if iface[:arp].value?("fe:ff:ff:ff:ff:ff")
     end
   end
   false
