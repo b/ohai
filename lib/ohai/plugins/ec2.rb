@@ -20,6 +20,16 @@ require 'open-uri'
 
 require_plugin "hostname"
 require_plugin "kernel"
+require_plugin "network"
+
+def have_ec2_mac?
+  network[:interfaces].each do |iface|
+    unless iface[:arp].nil?
+      return true if iface[:arp].value?("fe:ff:ff:ff:ff:ff")
+    end
+  end
+  false
+end
 
 def metadata(id='')
   OpenURI.open_uri("http://169.254.169.254/2008-02-01/meta-data/#{id}").
@@ -35,7 +45,7 @@ def metadata(id='')
   end
 end
 
-if (domain =~ /\.internal$/ || kernel[:release] =~ /-ec2-/)
+if have_ec2_mac?
   ec2 Mash.new
   self.metadata
 end
