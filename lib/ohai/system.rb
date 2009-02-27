@@ -92,7 +92,7 @@ module Ohai
           file_regex = Regexp.new("#{path}#{File::SEPARATOR}(.+).rb$")
           md = file_regex.match(file)
           if md
-            plugin_name = md[1].gsub(File::SEPARATOR, "::") 
+            plugin_name = md[1].gsub(File::SEPARATOR, "::")
             require_plugin(plugin_name) unless @seen_plugins.has_key?(plugin_name)
           end
         end
