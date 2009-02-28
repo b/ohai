@@ -132,11 +132,16 @@ module Ohai
     end
     
     def refresh_plugins(path)
-      parts = path.split('/'); parts.shift if parts[0].length == 0
-      h = @providers
-      parts.each do |part|
-        break unless h.has_key?(part)
-        h = h[part]
+      parts = path.split('/')
+      if parts.length > 0
+        parts.shift if parts[0].length == 0
+        h = @providers
+        parts.each do |part|
+          break unless h.has_key?(part)
+          h = h[part]
+        end
+      else
+        h = @providers
       end
 
       refreshments = collect_providers(h)
