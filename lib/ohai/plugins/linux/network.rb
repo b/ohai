@@ -16,6 +16,8 @@
 # limitations under the License.
 #
 
+provides "network"
+
 def encaps_lookup(encap)
   return "Loopback" if encap.eql?("Local Loopback")
   return "PPP" if encap.eql?("Point-to-Point Protocol")
