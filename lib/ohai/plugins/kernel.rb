@@ -16,6 +16,8 @@
 # limitations under the License.
 #
 
+provides "kernel"
+
 kernel Mash.new
 
 kernel[:name] = from("uname -s")

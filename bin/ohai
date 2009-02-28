@@ -63,5 +63,5 @@ else
   end
   ohai.all_plugins
 end
-
+ohai.refresh_plugins("/network/interfaces")
 puts ohai.json_pretty_print

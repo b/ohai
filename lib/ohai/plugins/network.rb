@@ -16,6 +16,8 @@
 # limitations under the License.
 #
 
+provides "network"
+
 network Mash.new unless network
 network[:interfaces] = Mash.new unless network[:interfaces]
 

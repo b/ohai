@@ -16,6 +16,8 @@
 # limitations under the License.
 #
 
+provides "kernel"
+
 kernel[:os] = kernel[:name]
 
 if from("sysctl -n hw.optional.x86_64").to_i == 1
