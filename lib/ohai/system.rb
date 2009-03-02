@@ -74,7 +74,6 @@ module Ohai
         end
         h[:_providers] ||= []
         h[:_providers] << @plugin_path
-        @providers.deep_merge(h) # this only works accidentally, right now.
       end
     end
     
@@ -131,7 +130,7 @@ module Ohai
       refreshments.flatten.uniq
     end
     
-    def refresh_plugins(path = "/")
+    def refresh_plugins(path = '/')
       parts = path.split('/')
       if parts.length == 0
         h = @providers
