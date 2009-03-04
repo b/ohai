@@ -16,10 +16,12 @@
 # limitations under the License.
 #
 
-provides "network"
+provides "network", "counters/network"
 
 network Mash.new unless network
 network[:interfaces] = Mash.new unless network[:interfaces]
+counters Mash.new unless counters
+counters[:network] = Mash.new unless counters[:network]
 
 require_plugin "hostname"
 require_plugin "#{os}::network"
@@ -39,7 +41,7 @@ if attribute?("default_interface")
   ipaddress im.shift
   macaddress im.shift
 else
-  network["interfaces"].keys.each do |iface|
+  network["interfaces"].keys.sort.each do |iface|
     if network["interfaces"][iface]["encapsulation"].eql?("Ethernet")
       im = find_ip_and_mac(network["interfaces"][iface]["addresses"])
       ipaddress im.shift

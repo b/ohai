@@ -68,9 +68,13 @@ module Ohai
       paths.each do |path|
         parts = path.split('/')
         h = @providers
-        parts.each do |part|
-          h[part] ||= Mash.new
-          h = h[part]
+        unless parts.length == 0
+          h = @providers
+          parts.shift if parts[0].length == 0
+          parts.each do |part|
+            h[part] ||= Mash.new
+            h = h[part]
+          end
         end
         h[:_providers] ||= []
         h[:_providers] << @plugin_path
