@@ -69,7 +69,6 @@ module Ohai
         parts = path.split('/')
         h = @providers
         unless parts.length == 0
-          h = @providers
           parts.shift if parts[0].length == 0
           parts.each do |part|
             h[part] ||= Mash.new
