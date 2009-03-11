@@ -18,6 +18,8 @@
 
 provides "network"
 
+network[:default_interface] = from("route -n \| grep ^0.0.0.0 \| awk \'{print \$8\}\'")
+
 def encaps_lookup(encap)
   return "Loopback" if encap.eql?("Local Loopback")
   return "PPP" if encap.eql?("Point-to-Point Protocol")
