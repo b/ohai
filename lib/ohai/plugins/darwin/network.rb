@@ -173,5 +173,4 @@ popen4("netstat -i -d -l -b -n") do |pid, stdin, stdout, stderr|
   end
 end
 
-counters[:network][:interfaces] = Mash.new
 counters[:network][:interfaces] = net_counters
